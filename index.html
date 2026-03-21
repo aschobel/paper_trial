@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dote — Know what love costs</title>
+  <meta name="description" content="Track every treat, every grooming session, every vet visit. Spoil them without the surprises.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500&family=Inter+Tight:wght@800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-synthesis: none;
+      scroll-behavior: smooth;
+    }
+
+    ::selection {
+      background-color: #C4632A;
+      color: #FAF8F5;
+    }
+
+    body {
+      background-color: #FAF8F5;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 390px;
+      min-height: 100vh;
+    }
+
+    /* --- Nav --- */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      width: 100%;
+    }
+    .nav-wordmark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #1A1815;
+      letter-spacing: -0.01em;
+      line-height: 28px;
+    }
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #8C867D;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #1A1815;
+    }
+    .nav-link:focus-visible {
+      outline: 2px solid #C4632A;
+      outline-offset: 3px;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 48px 24px 0;
+      width: 100%;
+    }
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 44px;
+      color: #1A1815;
+      letter-spacing: -0.02em;
+      line-height: 48px;
+    }
+    .hero-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #726D65;
+      line-height: 24px;
+    }
+
+    /* --- Buttons --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      background-color: #1A1815;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #FAF8F5;
+      letter-spacing: 0.01em;
+      line-height: 18px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+    .btn:hover {
+      background-color: #302D28;
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .btn:focus-visible {
+      outline: 2px solid #C4632A;
+      outline-offset: 3px;
+    }
+
+    /* --- Images --- */
+    .hero-image-wrap {
+      display: flex;
+      padding: 32px 24px 0;
+      width: 100%;
+    }
+    .hero-image-wrap img,
+    .bottom-cta-image,
+    .lifestyle-image {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-image-wrap:hover img,
+    .bottom-cta-image:hover,
+    .lifestyle-image:hover {
+      transform: scale(1.03);
+    }
+    .hero-image {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: center 15%;
+      border-radius: 12px;
+    }
+
+    /* --- Spend Card --- */
+    .spend-card-wrap {
+      display: flex;
+      flex-direction: column;
+      padding: 32px 24px 0;
+      width: 100%;
+    }
+    .spend-card {
+      background-color: #F0ECE6;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 28px;
+      width: 100%;
+    }
+    .spend-card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .label-upper {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #8C867D;
+      letter-spacing: 0.08em;
+      line-height: 16px;
+      text-transform: uppercase;
+    }
+    .label-accent {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #C4632A;
+      line-height: 16px;
+    }
+    .big-number {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: #1A1815;
+      letter-spacing: -0.03em;
+      line-height: 48px;
+    }
+
+    /* --- Category Rows --- */
+    .category-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-top: 1px solid #E5E0D8;
+      width: 100%;
+    }
+    .category-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-accent { background-color: #C4632A; }
+    .dot-dark { background-color: #1A1815; }
+    .dot-muted { background-color: #8C867D; }
+    .category-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #1A1815;
+      line-height: 18px;
+    }
+    .category-amount {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1A1815;
+      line-height: 18px;
+    }
+
+    /* --- Recent Activity --- */
+    .recent-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 48px 24px 0;
+      width: 100%;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: #E5E0D8;
+    }
+
+    .activity-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 16px 24px;
+      width: 100%;
+    }
+    .activity-row + .activity-row {
+      border-top: 1px solid #EDEAE5;
+    }
+    .activity-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .activity-merchant {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #1A1815;
+      line-height: 18px;
+    }
+    .activity-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #726D65;
+      line-height: 16px;
+    }
+    .activity-amount {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1A1815;
+      line-height: 18px;
+    }
+
+    /* --- Value Prop --- */
+    .value-prop {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 48px 24px 0;
+      width: 100%;
+    }
+    .section-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: #1A1815;
+      letter-spacing: -0.01em;
+      line-height: 36px;
+    }
+    .lifestyle-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* --- Features --- */
+    .features {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 24px 0;
+      width: 100%;
+    }
+    .feature-row {
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      width: 100%;
+      align-items: baseline;
+    }
+    .feature-row + .feature-row {
+      border-top: 1px solid #EDEAE5;
+    }
+    .feature-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: #C4632A;
+      letter-spacing: 0.06em;
+      line-height: 14px;
+      flex-shrink: 0;
+      width: 20px;
+    }
+    .feature-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .feature-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1A1815;
+      line-height: 18px;
+    }
+    .feature-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #726D65;
+      line-height: 19px;
+    }
+
+    /* --- Bottom CTA --- */
+    .bottom-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      background-color: #F0ECE6;
+      border-radius: 16px;
+      margin: 48px 12px 0;
+      padding: 48px 24px;
+    }
+    .bottom-cta-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      color: #1A1815;
+      letter-spacing: -0.01em;
+      line-height: 38px;
+      text-align: center;
+    }
+    .bottom-cta .btn {
+      align-self: center;
+    }
+    .bottom-cta-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center 25%;
+      border-radius: 12px;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      width: 100%;
+      border-top: 1px solid #E5E0D8;
+    }
+    .footer-wordmark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 16px;
+      color: #8C867D;
+      line-height: 20px;
+    }
+    .footer-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #8C867D;
+      line-height: 16px;
+    }
+
+    /* --- Tablet+ --- */
+    @media (min-width: 640px) {
+      .page {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+      .nav { padding: 24px 40px; }
+      .hero { padding: 64px 40px 0; }
+      .hero-headline { font-size: 56px; line-height: 60px; }
+      .hero-image-wrap { padding: 40px 40px 0; }
+      .hero-image { height: 440px; }
+      .spend-card-wrap { padding: 40px 40px 0; }
+      .recent-header { padding: 56px 40px 0; }
+      .activity-row { padding: 18px 40px; }
+      .value-prop { padding: 56px 40px 0; }
+      .lifestyle-image { height: 300px; }
+      .features { padding: 16px 40px 0; }
+      .bottom-cta { margin: 56px 24px 0; padding: 56px 40px; }
+      .bottom-cta-headline { font-size: 36px; line-height: 42px; }
+      .bottom-cta-image { height: 240px; }
+      .footer { padding: 24px 40px; }
+    }
+
+    /* --- Desktop --- */
+    @media (min-width: 1024px) {
+      .page {
+        max-width: 800px;
+        padding: 32px 0;
+      }
+      .nav { padding: 28px 60px; }
+      .hero { padding: 80px 60px 0; gap: 28px; }
+      .hero-headline { font-size: 64px; line-height: 66px; }
+      .hero-body { font-size: 18px; line-height: 28px; max-width: 480px; }
+      .btn { padding: 16px 32px; font-size: 16px; }
+      .hero-image-wrap { padding: 48px 60px 0; }
+      .hero-image { height: 500px; }
+      .spend-card-wrap { padding: 48px 60px 0; }
+      .spend-card { padding: 36px; }
+      .big-number { font-size: 56px; line-height: 56px; }
+      .recent-header { padding: 64px 60px 0; }
+      .activity-row { padding: 20px 60px; }
+      .activity-merchant { font-size: 16px; }
+      .value-prop { padding: 64px 60px 0; }
+      .section-headline { font-size: 34px; line-height: 42px; }
+      .lifestyle-image { height: 360px; }
+      .features { padding: 20px 60px 0; }
+      .feature-row { padding: 24px 0; }
+      .feature-title { font-size: 16px; }
+      .bottom-cta { margin: 64px 32px 0; padding: 64px 60px; }
+      .bottom-cta-headline { font-size: 40px; line-height: 46px; }
+      .bottom-cta-image { height: 280px; }
+      .footer { padding: 28px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Nav -->
+    <nav class="nav">
+      <div class="nav-wordmark">dote</div>
+      <a href="#" class="nav-link">Sign in</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="hero-headline">Know what love costs.</h1>
+      <p class="hero-body">Track every treat, every grooming session, every vet visit. Spoil them without the surprises.</p>
+      <a href="#" class="btn">Start tracking</a>
+    </section>
+
+    <!-- Hero Image -->
+    <div class="hero-image-wrap">
+      <img src="heroes/penny-v2a.jpg" alt="Penny the Doberman standing in a sunlit room" class="hero-image">
+    </div>
+
+    <!-- Monthly Spend Card -->
+    <div class="spend-card-wrap">
+      <div class="spend-card">
+        <div class="spend-card-header">
+          <span class="label-upper">March 2026</span>
+          <span class="label-accent">Penny</span>
+        </div>
+        <div class="big-number">$847</div>
+        <div class="category-row">
+          <div class="category-left">
+            <div class="dot dot-accent"></div>
+            <span class="category-name">Food &amp; treats</span>
+          </div>
+          <span class="category-amount">$340</span>
+        </div>
+        <div class="category-row">
+          <div class="category-left">
+            <div class="dot dot-dark"></div>
+            <span class="category-name">Grooming</span>
+          </div>
+          <span class="category-amount">$285</span>
+        </div>
+        <div class="category-row">
+          <div class="category-left">
+            <div class="dot dot-muted"></div>
+            <span class="category-name">Toys &amp; accessories</span>
+          </div>
+          <span class="category-amount">$142</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="recent-header">
+      <span class="label-upper">Recent</span>
+      <div class="divider"></div>
+    </div>
+
+    <div class="activity-row">
+      <div class="activity-info">
+        <span class="activity-merchant">The Good Dog Bakery</span>
+        <span class="activity-meta">Food &amp; treats · Today</span>
+      </div>
+      <span class="activity-amount">$28</span>
+    </div>
+    <div class="activity-row">
+      <div class="activity-info">
+        <span class="activity-merchant">Paws &amp; Claws Spa</span>
+        <span class="activity-meta">Grooming · Yesterday</span>
+      </div>
+      <span class="activity-amount">$85</span>
+    </div>
+    <div class="activity-row">
+      <div class="activity-info">
+        <span class="activity-merchant">Dr. Williams — annual visit</span>
+        <span class="activity-meta">Vet · Mar 14</span>
+      </div>
+      <span class="activity-amount">$180</span>
+    </div>
+    <div class="activity-row">
+      <div class="activity-info">
+        <span class="activity-merchant">BarkShop — Super Chewer box</span>
+        <span class="activity-meta">Toys · Mar 10</span>
+      </div>
+      <span class="activity-amount">$35</span>
+    </div>
+
+    <!-- Value Proposition -->
+    <section class="value-prop">
+      <h2 class="section-headline">They give you everything. The least you can do is keep track.</h2>
+      <img src="heroes/penny-accessories-pink.jpg" alt="Premium dog accessories with pink unicorn collar" class="lifestyle-image">
+    </section>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="feature-row">
+        <span class="feature-number">01</span>
+        <div class="feature-content">
+          <span class="feature-title">Snap a receipt, done</span>
+          <span class="feature-desc">Photo it at the pet store. Dote reads the total and sorts it.</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <span class="feature-number">02</span>
+        <div class="feature-content">
+          <span class="feature-title">Categories that make sense</span>
+          <span class="feature-desc">Food, vet, grooming, toys — not "miscellaneous."</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <span class="feature-number">03</span>
+        <div class="feature-content">
+          <span class="feature-title">Monthly totals, no spreadsheet</span>
+          <span class="feature-desc">See what you spent and where. Trends over time without the effort.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta">
+      <h2 class="bottom-cta-headline">She's not going to track it herself.</h2>
+      <a href="#" class="btn">Start tracking</a>
+      <img src="heroes/penny-intimate-v2.jpg" alt="Penny resting on the couch" class="bottom-cta-image">
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-wordmark">dote</div>
+      <span class="footer-tagline">Because they deserve it.</span>
+    </footer>
+
+  </div>
+</body>
+</html>

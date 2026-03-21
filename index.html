@@ -37,20 +37,29 @@
       min-height: 100vh;
     }
 
+    /* --- Masthead --- */
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px 0;
+      width: 100%;
+    }
+    .masthead-wordmark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 52px;
+      color: #1A1815;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
     /* --- Nav --- */
     .nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
+      justify-content: flex-end;
+      padding: 16px 24px;
       width: 100%;
-    }
-    .nav-wordmark {
-      font-family: 'DM Serif Display', serif;
-      font-size: 22px;
-      color: #1A1815;
-      letter-spacing: -0.01em;
-      line-height: 28px;
     }
     .nav-link {
       font-family: 'Inter', sans-serif;
@@ -405,8 +414,10 @@
         margin: 0 auto;
         padding: 20px 0;
       }
-      .nav { padding: 24px 40px; }
-      .hero { padding: 64px 40px 0; }
+      .masthead { padding: 48px 40px 0; }
+      .masthead-wordmark { font-size: 60px; }
+      .nav { padding: 16px 40px; }
+      .hero { padding: 56px 40px 0; }
       .hero-headline { font-size: 56px; line-height: 60px; }
       .hero-image-wrap { padding: 40px 40px 0; }
       .hero-image { height: 440px; }
@@ -428,8 +439,10 @@
         max-width: 800px;
         padding: 32px 0;
       }
-      .nav { padding: 28px 60px; }
-      .hero { padding: 80px 60px 0; gap: 28px; }
+      .masthead { padding: 56px 60px 0; }
+      .masthead-wordmark { font-size: 72px; }
+      .nav { padding: 20px 60px; }
+      .hero { padding: 56px 60px 0; gap: 28px; }
       .hero-headline { font-size: 64px; line-height: 66px; }
       .hero-body { font-size: 18px; line-height: 28px; max-width: 480px; }
       .btn { padding: 16px 32px; font-size: 16px; }
@@ -457,9 +470,13 @@
 <body>
   <div class="page">
 
+    <!-- Masthead -->
+    <header class="masthead">
+      <div class="masthead-wordmark">dote</div>
+    </header>
+
     <!-- Nav -->
     <nav class="nav">
-      <div class="nav-wordmark">dote</div>
       <a href="#" class="nav-link">Sign in</a>
     </nav>
 
@@ -582,8 +599,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="footer-wordmark">dote</div>
       <span class="footer-tagline">Because they deserve it.</span>
+      <span class="footer-wordmark">dote</span>
     </footer>
 
   </div>

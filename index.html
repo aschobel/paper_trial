@@ -37,12 +37,13 @@
       min-height: 100vh;
     }
 
-    /* --- Masthead --- */
+    /* --- Masthead + Nav --- */
     .masthead {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 24px 0;
+      position: relative;
+      padding: 40px 24px;
       width: 100%;
     }
     .masthead-wordmark {
@@ -52,16 +53,11 @@
       letter-spacing: -0.02em;
       line-height: 1;
     }
-
-    /* --- Nav --- */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 16px 24px;
-      width: 100%;
-    }
     .nav-link {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
       font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 500;
@@ -414,10 +410,10 @@
         margin: 0 auto;
         padding: 20px 0;
       }
-      .masthead { padding: 48px 40px 0; }
+      .masthead { padding: 48px 40px; }
       .masthead-wordmark { font-size: 60px; }
-      .nav { padding: 16px 40px; }
-      .hero { padding: 56px 40px 0; }
+      .nav-link { right: 40px; }
+      .hero { padding: 48px 40px 0; }
       .hero-headline { font-size: 56px; line-height: 60px; }
       .hero-image-wrap { padding: 40px 40px 0; }
       .hero-image { height: 440px; }
@@ -439,10 +435,10 @@
         max-width: 800px;
         padding: 32px 0;
       }
-      .masthead { padding: 56px 60px 0; }
+      .masthead { padding: 56px 60px; }
       .masthead-wordmark { font-size: 72px; }
-      .nav { padding: 20px 60px; }
-      .hero { padding: 56px 60px 0; gap: 28px; }
+      .nav-link { right: 60px; font-size: 14px; }
+      .hero { padding: 48px 60px 0; gap: 28px; }
       .hero-headline { font-size: 64px; line-height: 66px; }
       .hero-body { font-size: 18px; line-height: 28px; max-width: 480px; }
       .btn { padding: 16px 32px; font-size: 16px; }
@@ -473,12 +469,8 @@
     <!-- Masthead -->
     <header class="masthead">
       <div class="masthead-wordmark">dote</div>
-    </header>
-
-    <!-- Nav -->
-    <nav class="nav">
       <a href="#" class="nav-link">Sign in</a>
-    </nav>
+    </header>
 
     <!-- Hero -->
     <section class="hero">

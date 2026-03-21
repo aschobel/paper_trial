@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dote — Penny</title>
+  <meta name="description" content="23 ways you spoiled her this month.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500&family=Inter+Tight:wght@800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-synthesis: none;
+    }
+    ::selection { background-color: #C4632A; color: #FAF8F5; }
+    body {
+      background-color: #FAF8F5;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+    .app {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 390px;
+      min-height: 100vh;
+      position: relative;
+      padding-bottom: 100px;
+    }
+
+    /* --- App Header --- */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px 0;
+      width: 100%;
+    }
+    .app-wordmark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: #1A1815;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .month-picker {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1A1815;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .month-picker svg {
+      transition: transform 0.2s ease;
+    }
+
+    /* --- Hero Total --- */
+    .hero-total {
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px 0;
+      gap: 6px;
+    }
+    .pet-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #C4632A;
+      line-height: 16px;
+    }
+    .total-amount {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 56px;
+      font-weight: 800;
+      color: #1A1815;
+      letter-spacing: -0.03em;
+      line-height: 56px;
+    }
+    .total-sub {
+      font-size: 13px;
+      color: #726D65;
+      line-height: 16px;
+      padding-top: 2px;
+    }
+
+    /* --- Category Bar --- */
+    .category-bar {
+      display: flex;
+      padding: 20px 24px 0;
+      gap: 3px;
+      width: 100%;
+    }
+    .cat-seg {
+      height: 6px;
+    }
+    .cat-seg:first-child { border-radius: 3px 0 0 3px; }
+    .cat-seg:last-child { border-radius: 0 3px 3px 0; }
+    .cat-seg-food { background-color: #C4632A; flex: 340; }
+    .cat-seg-groom { background-color: #1A1815; flex: 285; }
+    .cat-seg-toys { background-color: #B5B0A8; flex: 142; }
+    .cat-seg-vet { background-color: #DDD9D2; flex: 80; }
+
+    .category-labels {
+      display: flex;
+      padding: 10px 24px 0;
+      gap: 16px;
+      width: 100%;
+    }
+    .cat-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #726D65;
+    }
+    .cat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* --- Day Headers --- */
+    .day-header {
+      display: flex;
+      align-items: center;
+      padding: 28px 24px 0;
+      gap: 12px;
+      width: 100%;
+    }
+    .day-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8C867D;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 16px;
+      flex-shrink: 0;
+    }
+    .day-line {
+      flex: 1;
+      height: 1px;
+      background-color: #E5E0D8;
+    }
+
+    /* --- Transactions --- */
+    .tx {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .tx:hover {
+      background-color: #F0ECE6;
+    }
+    .tx-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tx-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background-color: #F0ECE6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+    .tx:hover .tx-icon {
+      background-color: #E5E0D8;
+    }
+    .tx-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .tx-merchant {
+      font-size: 15px;
+      color: #1A1815;
+      line-height: 18px;
+    }
+    .tx-meta {
+      font-size: 12px;
+      color: #726D65;
+      line-height: 16px;
+    }
+    .tx-amount {
+      font-size: 15px;
+      font-weight: 500;
+      color: #1A1815;
+      line-height: 18px;
+    }
+
+    /* --- Floating Button --- */
+    .fab {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      background-color: #1A1815;
+      color: #FAF8F5;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 18px;
+      box-shadow: 0 4px 24px rgba(26, 24, 21, 0.2);
+      transition: background-color 0.2s ease, transform 0.15s ease;
+      z-index: 10;
+    }
+    .fab:hover {
+      background-color: #302D28;
+    }
+    .fab:active {
+      transform: translateX(-50%) scale(0.96);
+    }
+
+    /* --- Sheet Overlay --- */
+    .sheet-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(26, 24, 21, 0);
+      z-index: 20;
+      pointer-events: none;
+      transition: background-color 0.3s ease;
+    }
+    .sheet-overlay.open {
+      background-color: rgba(26, 24, 21, 0.3);
+      pointer-events: all;
+    }
+
+    /* --- Sheet --- */
+    .sheet {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 100%);
+      width: 100%;
+      max-width: 390px;
+      background-color: #FAF8F5;
+      border-radius: 20px 20px 0 0;
+      z-index: 30;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -4px 40px rgba(26, 24, 21, 0.12);
+    }
+    .sheet.open {
+      transform: translate(-50%, 0);
+    }
+    .sheet-handle {
+      display: flex;
+      justify-content: center;
+      padding: 12px 0 0;
+    }
+    .sheet-handle-bar {
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: #DDD9D2;
+    }
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px 0;
+    }
+    .sheet-cancel {
+      font-size: 14px;
+      color: #726D65;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      padding: 4px 0;
+      transition: color 0.2s ease;
+    }
+    .sheet-cancel:hover { color: #1A1815; }
+    .sheet-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1A1815;
+    }
+    .sheet-save {
+      font-size: 14px;
+      font-weight: 500;
+      color: #C4632A;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      padding: 4px 0;
+      transition: opacity 0.2s ease;
+    }
+    .sheet-save:hover { opacity: 0.7; }
+
+    /* --- Amount Input --- */
+    .amount-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px 0;
+      gap: 8px;
+    }
+    .amount-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8C867D;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 16px;
+    }
+    .amount-display {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+    .amount-whole {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 64px;
+      font-weight: 800;
+      color: #1A1815;
+      letter-spacing: -0.03em;
+      line-height: 64px;
+    }
+    .amount-cents {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #B5B0A8;
+      letter-spacing: -0.03em;
+      line-height: 36px;
+    }
+    .amount-cursor {
+      width: 120px;
+      height: 2px;
+      background-color: #C4632A;
+      border-radius: 1px;
+      margin-top: 4px;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* --- Category Pills --- */
+    .pills-section {
+      display: flex;
+      flex-direction: column;
+      padding: 32px 24px 0;
+      gap: 12px;
+    }
+    .pills-wrap {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      padding: 10px 16px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .pill-inactive {
+      background-color: #F0ECE6;
+      color: #1A1815;
+    }
+    .pill-inactive:hover {
+      background-color: #E5E0D8;
+    }
+    .pill-active {
+      background-color: #1A1815;
+      color: #FAF8F5;
+      font-weight: 500;
+    }
+
+    /* --- Form Fields --- */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .field-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8C867D;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 16px;
+    }
+    .field-input {
+      padding: 14px 16px;
+      background-color: #F0ECE6;
+      border-radius: 10px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #1A1815;
+      line-height: 18px;
+      outline: none;
+      width: 100%;
+      transition: background-color 0.15s ease;
+    }
+    .field-input:focus {
+      background-color: #E5E0D8;
+    }
+    .field-input::placeholder {
+      color: #B5B0A8;
+    }
+    .field-row {
+      display: flex;
+      padding: 16px 24px 0;
+      gap: 12px;
+    }
+    .field-row .field { flex: 1; }
+    .merchant-field {
+      padding: 24px 24px 0;
+    }
+
+    /* --- Home link --- */
+    .back-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* --- Desktop --- */
+    @media (min-width: 640px) {
+      .app { margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="app-header">
+      <a href="index.html" class="back-link">
+        <div class="app-wordmark">dote</div>
+      </a>
+      <button class="month-picker">
+        March
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="#1A1815" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </header>
+
+    <!-- Total -->
+    <section class="hero-total">
+      <span class="pet-name">Penny</span>
+      <div class="total-amount">$847</div>
+      <span class="total-sub">23 ways you spoiled her</span>
+    </section>
+
+    <!-- Category Bar -->
+    <div class="category-bar">
+      <div class="cat-seg cat-seg-food"></div>
+      <div class="cat-seg cat-seg-groom"></div>
+      <div class="cat-seg cat-seg-toys"></div>
+      <div class="cat-seg cat-seg-vet"></div>
+    </div>
+    <div class="category-labels">
+      <span class="cat-label"><span class="cat-dot" style="background:#C4632A"></span>Food $340</span>
+      <span class="cat-label"><span class="cat-dot" style="background:#1A1815"></span>Grooming $285</span>
+      <span class="cat-label"><span class="cat-dot" style="background:#B5B0A8"></span>Toys $142</span>
+      <span class="cat-label"><span class="cat-dot" style="background:#DDD9D2"></span>Vet $80</span>
+    </div>
+
+    <!-- Today -->
+    <div class="day-header">
+      <span class="day-label">Today</span>
+      <div class="day-line"></div>
+    </div>
+    <div class="tx" onclick="openSheet()">
+      <div class="tx-left">
+        <div class="tx-icon">🦴</div>
+        <div class="tx-info">
+          <span class="tx-merchant">The Good Dog Bakery</span>
+          <span class="tx-meta">Food &amp; treats · 2:14 PM</span>
+        </div>
+      </div>
+      <span class="tx-amount">$28.00</span>
+    </div>
+    <div class="tx">
+      <div class="tx-left">
+        <div class="tx-icon">✂️</div>
+        <div class="tx-info">
+          <span class="tx-merchant">Pampered Paws</span>
+          <span class="tx-meta">Grooming · 11:30 AM</span>
+        </div>
+      </div>
+      <span class="tx-amount">$45.00</span>
+    </div>
+
+    <!-- Yesterday -->
+    <div class="day-header">
+      <span class="day-label">Yesterday</span>
+      <div class="day-line"></div>
+    </div>
+    <div class="tx">
+      <div class="tx-left">
+        <div class="tx-icon">🧴</div>
+        <div class="tx-info">
+          <span class="tx-merchant">Paws &amp; Claws Spa</span>
+          <span class="tx-meta">Grooming · 3:45 PM</span>
+        </div>
+      </div>
+      <span class="tx-amount">$85.00</span>
+    </div>
+    <div class="tx">
+      <div class="tx-left">
+        <div class="tx-icon">🎁</div>
+        <div class="tx-info">
+          <span class="tx-merchant">BarkShop — Super Chewer</span>
+          <span class="tx-meta">Toys · 10:20 AM</span>
+        </div>
+      </div>
+      <span class="tx-amount">$35.00</span>
+    </div>
+
+    <!-- Mar 18 -->
+    <div class="day-header">
+      <span class="day-label">Mar 18</span>
+      <div class="day-line"></div>
+    </div>
+    <div class="tx">
+      <div class="tx-left">
+        <div class="tx-icon">🏥</div>
+        <div class="tx-info">
+          <span class="tx-merchant">Dr. Williams — annual visit</span>
+          <span class="tx-meta">Vet · 9:00 AM</span>
+        </div>
+      </div>
+      <span class="tx-amount">$180.00</span>
+    </div>
+    <div class="tx">
+      <div class="tx-left">
+        <div class="tx-icon">🦴</div>
+        <div class="tx-info">
+          <span class="tx-merchant">Ollie — fresh meals</span>
+          <span class="tx-meta">Food &amp; treats · delivered</span>
+        </div>
+      </div>
+      <span class="tx-amount">$72.00</span>
+    </div>
+
+    <!-- FAB -->
+    <button class="fab" onclick="openSheet()">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3.75V14.25M3.75 9H14.25" stroke="#FAF8F5" stroke-width="2" stroke-linecap="round"/></svg>
+      Spoil her
+    </button>
+  </div>
+
+  <!-- Sheet Overlay -->
+  <div class="sheet-overlay" id="overlay" onclick="closeSheet()"></div>
+
+  <!-- Add Expense Sheet -->
+  <div class="sheet" id="sheet">
+    <div class="sheet-handle"><div class="sheet-handle-bar"></div></div>
+    <div class="sheet-header">
+      <button class="sheet-cancel" onclick="closeSheet()">Cancel</button>
+      <span class="sheet-title">New treat</span>
+      <button class="sheet-save" onclick="closeSheet()">Add it</button>
+    </div>
+    <div class="amount-section">
+      <span class="amount-label">Amount</span>
+      <div class="amount-display">
+        <span class="amount-whole">$84</span>
+        <span class="amount-cents">.50</span>
+      </div>
+      <div class="amount-cursor"></div>
+    </div>
+    <div class="pills-section">
+      <span class="field-label">Category</span>
+      <div class="pills-wrap">
+        <button class="pill pill-active">Food &amp; treats</button>
+        <button class="pill pill-inactive" onclick="selectPill(this)">Grooming</button>
+        <button class="pill pill-inactive" onclick="selectPill(this)">Vet</button>
+        <button class="pill pill-inactive" onclick="selectPill(this)">Toys</button>
+        <button class="pill pill-inactive" onclick="selectPill(this)">Boarding</button>
+        <button class="pill pill-inactive" onclick="selectPill(this)">Other</button>
+      </div>
+    </div>
+    <div class="merchant-field">
+      <div class="field">
+        <label class="field-label">Merchant</label>
+        <input type="text" class="field-input" value="The Good Dog Bakery">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Date</label>
+        <input type="text" class="field-input" value="Mar 21, 2026">
+      </div>
+      <div class="field">
+        <label class="field-label">Note</label>
+        <input type="text" class="field-input" placeholder="Optional">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openSheet() {
+      document.getElementById('sheet').classList.add('open');
+      document.getElementById('overlay').classList.add('open');
+    }
+    function closeSheet() {
+      document.getElementById('sheet').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+    }
+    function selectPill(el) {
+      document.querySelectorAll('.pill').forEach(p => {
+        p.classList.remove('pill-active');
+        p.classList.add('pill-inactive');
+      });
+      el.classList.remove('pill-inactive');
+      el.classList.add('pill-active');
+    }
+  </script>
+</body>
+</html>

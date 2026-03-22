@@ -21,9 +21,11 @@
 
   /* ── HERO ── */
   .hero {
-    background: #1C1917;
+    background: linear-gradient(rgba(28, 25, 23, 0.7), rgba(28, 25, 23, 0.7)), url('heroes/couple-hero.jpg');
+    background-size: cover;
+    background-position: center;
     color: #FAFAF8;
-    padding: 80px 24px 72px;
+    padding: 100px 24px 80px;
     text-align: center;
   }
 
@@ -114,6 +116,7 @@
     grid-template-columns: 40px 1fr 100px 100px 80px 100px;
     gap: 12px;
     padding: 12px 16px;
+    padding-bottom: 12px;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -126,7 +129,7 @@
     display: grid;
     grid-template-columns: 40px 1fr 100px 100px 80px 100px;
     gap: 12px;
-    padding: 14px 16px;
+    padding: 16px 16px;
     align-items: center;
     border-bottom: 1px solid #F5F3EF;
     transition: background 0.2s ease;
@@ -600,22 +603,74 @@
     line-height: 1.6;
   }
 
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    padding: 48px 24px;
-    color: #78716C;
-    font-size: 13px;
+  /* ── ROAD TRIP NOTE ── */
+  .road-trip-note {
+    border-left: 3px solid #926B4F;
+    padding: 16px 20px;
+    background: #F5F3EF;
+    border-radius: 0 10px 10px 0;
+    margin-top: 16px;
+    font-size: 14px;
     line-height: 1.6;
   }
 
-  .footer .built-by {
-    margin-bottom: 4px;
+  /* ── MORE DEST IMAGES ── */
+  .more-dest-img-wrap {
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 24px;
   }
 
-  .footer .sources {
-    font-size: 12px;
-    color: #A8A29E;
+  .more-dest-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.4s ease;
+  }
+
+  .more-dest-img-wrap:hover .more-dest-img {
+    transform: scale(1.02);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 64px 24px 48px;
+    text-align: center;
+  }
+
+  .footer-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .footer-divider {
+    width: 40px;
+    height: 2px;
+    background: #926B4F;
+    margin: 0 auto 32px;
+    border-radius: 1px;
+  }
+
+  .footer-main {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    color: #1C1917;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 13px;
+    color: #78716C;
+    margin-bottom: 24px;
+  }
+
+  .footer-cta {
+    font-size: 15px;
+    color: #926B4F;
+    font-weight: 500;
+    font-style: italic;
   }
 
   /* ── RESPONSIVE ── */
@@ -638,7 +693,7 @@
   /* Desktop: 1024px+ */
   @media (min-width: 1024px) {
     .hero {
-      padding: 120px 40px 100px;
+      padding: 100px 40px 80px;
     }
 
     .hero h1 {
@@ -899,7 +954,7 @@
       <span class="top-pick-badge">Top Pick &mdash; No. 1</span>
 
       <div class="top-pick-image-wrap">
-        <img class="top-pick-image" src="heroes/tokyo-hero.jpg" alt="Tokyo skyline with cherry blossoms">
+        <img class="top-pick-image" src="heroes/tokyo-ramen-alley.jpg" alt="Tokyo skyline with cherry blossoms">
       </div>
 
       <h3 class="top-pick-name">Tokyo</h3>
@@ -951,6 +1006,7 @@
           <li><span class="icon">🎌</span> <span><strong>TeamLab Borderless</strong> — immersive digital art (reopened in Azabudai)</span></li>
           <li><span class="icon">🌸</span> <span><strong>Late blooms in Shinjuku</strong> — Tokyo sakura peaked Mar 27, but late varieties linger into April</span></li>
           <li><span class="icon">🛍️</span> <span><strong>Shimokitazawa</strong> — vintage shops, indie cafés, live music</span></li>
+          <li><span class="attraction-icon">🚗</span><span><strong>Road trip: Tokyo → Alps → Kyoto</strong> — rent a car, drive through the Japanese Alps, stop in Takayama and Kanazawa, end in Kyoto (extends trip to 10 days)</span></li>
         </ul>
       </div>
 
@@ -960,6 +1016,10 @@
 
       <div class="callout callout-deal">
         <strong>Why it wins:</strong> Only destination with nonstop both ways. ZIPAIR is JAL's low-cost carrier — basic but comfortable. $767 out is the cheapest transpacific fare on the board. Post-sakura Tokyo is warm, uncrowded, and green.
+      </div>
+
+      <div class="road-trip-note">
+        <strong>The road trip option:</strong> Rent a car and drive west through the Japanese Alps to Takayama — the "Little Kyoto" with traditional wooden merchant houses and morning markets. Continue to Kanazawa for the best sushi outside Tsukiji and the stunning Kenrokuen Garden. Then south to Kyoto for temples, tea ceremonies, and geisha district walks. Five days of driving through some of the most beautiful countryside in the world. Japan's highways are immaculate, signage is bilingual, and rest stops serve better food than most restaurants. This turns a Tokyo city trip into a 10-day grand tour of Japan.
       </div>
     </div>
 
@@ -1112,6 +1172,9 @@
 
     <!-- ─── #4 HOI AN ─── -->
     <div class="more-dest">
+      <div class="more-dest-img-wrap">
+        <img class="more-dest-img" src="heroes/hoian-lanterns.jpg" alt="Hoi An lanterns reflecting on the Thu Bon river">
+      </div>
       <div class="more-dest-header">
         <span class="rank-badge">4</span>
         <h3 class="more-dest-name">Hoi An</h3>
@@ -1166,6 +1229,9 @@
 
     <!-- ─── #5 CROATIA ─── -->
     <div class="more-dest">
+      <div class="more-dest-img-wrap">
+        <img class="more-dest-img" src="heroes/croatia-dubrovnik.jpg" alt="Dubrovnik old town terracotta rooftops">
+      </div>
       <div class="more-dest-header">
         <span class="rank-badge">5</span>
         <h3 class="more-dest-name">Croatia</h3>
@@ -1221,6 +1287,9 @@
 
     <!-- ─── #6 TBILISI ─── -->
     <div class="more-dest">
+      <div class="more-dest-img-wrap">
+        <img class="more-dest-img" src="heroes/tbilisi-balconies.jpg" alt="Tbilisi colorful wooden balconies">
+      </div>
       <div class="more-dest-header">
         <span class="rank-badge">6</span>
         <h3 class="more-dest-name">Tbilisi</h3>
@@ -1275,6 +1344,9 @@
 
     <!-- ─── #7 MENDOZA ─── -->
     <div class="more-dest">
+      <div class="more-dest-img-wrap">
+        <img class="more-dest-img" src="heroes/mendoza-vineyard.jpg" alt="Mendoza vineyard with Andes mountains">
+      </div>
       <div class="more-dest-header">
         <span class="rank-badge">7</span>
         <h3 class="more-dest-name">Mendoza</h3>
@@ -1406,6 +1478,11 @@
         <p class="pt-text">Lisbon on nonstop TAP. Europe with a direct flight, natural wine, pastéis de nata, day trip to Porto. $2,861 all-in nonstop.</p>
       </div>
 
+      <div class="pt-rec">
+        <div class="pt-label">The Grand Tour</div>
+        <p class="pt-text">Tokyo + road trip through the Japanese Alps to Kyoto. Extend to 10 days and you get nonstop flights, ramen alleys, mountain ryokans, ancient temples, and the best driving roads in Asia. The trip of a lifetime for under $3K in flights.</p>
+      </div>
+
       <p class="pt-closing">
         🐾 Whatever you pick, I'll have the full itinerary built within 24 hours of your call. Just say the word.
       </p>
@@ -1415,10 +1492,14 @@
 </div>
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
-<div class="footer">
-  <div class="built-by">Built with 🐾 by Penny — March 22, 2026</div>
-  <div class="sources">Flight prices via Google Flights (awesome-cheap-flights). Weather from Open-Meteo historical data (April 2025 actuals).</div>
-</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-divider"></div>
+    <p class="footer-main">Built with care by Penny</p>
+    <p class="footer-sub">March 22, 2026 · Flight prices via Google Flights · Weather from Open-Meteo (April 2025 actuals)</p>
+    <p class="footer-cta">Just say the word — the itinerary builds itself.</p>
+  </div>
+</footer>
 
 </body>
 </html>

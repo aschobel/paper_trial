@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tokyo & Beyond — April 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #faf9f6;
+    color: #2d2d2d;
+    line-height: 1.7;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+  .hero img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+  }
+  .hero-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 60px 40px 50px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+  }
+  .hero-overlay h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .hero-overlay .subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.9;
+    letter-spacing: 0.05em;
+  }
+  .hero-overlay .dates {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  /* Content */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  .section { padding: 80px 0; }
+  .section:nth-child(even) { background: #f3f1ec; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c0392b;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    color: #1a1a1a;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    color: #1a1a1a;
+  }
+
+  p { margin-bottom: 16px; font-size: 1.05rem; color: #444; }
+
+  .lead { font-size: 1.2rem; font-weight: 300; color: #555; line-height: 1.8; }
+
+  /* Image cards */
+  .img-card {
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 32px 0;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  .img-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .img-card .caption {
+    padding: 16px 20px;
+    background: white;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  /* Day cards */
+  .day-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    margin: 40px 0;
+  }
+  .day-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+  }
+  .day-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #c0392b;
+    line-height: 1;
+  }
+  .day-dow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #999;
+    margin-top: 2px;
+  }
+  .day-line {
+    width: 2px;
+    flex: 1;
+    background: #e0ddd6;
+    margin-top: 12px;
+  }
+  .day-content {
+    padding: 0 0 40px 20px;
+    border-left: none;
+  }
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+  .day-content p { font-size: 0.95rem; margin-bottom: 8px; }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #fef9ef 0%, #fdf3e2 100%);
+    border-left: 4px solid #e67e22;
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin: 24px 0;
+  }
+  .highlight-box .emoji { font-size: 1.3rem; margin-right: 8px; }
+
+  /* Two-up images */
+  .img-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .img-duo img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  /* Food section */
+  .food-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid #eee;
+  }
+  .food-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  .food-card .meta {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .food-card p { font-size: 0.95rem; margin-bottom: 0; }
+
+  /* Logistics */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    background: #2d2d2d;
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+  .footer .sig {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .hero { min-height: 500px; }
+    .hero-overlay { padding: 40px 20px 30px; }
+    .section { padding: 50px 0; }
+    .day-grid { grid-template-columns: 60px 1fr; }
+    .img-duo { grid-template-columns: 1fr; }
+    .img-duo img { height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="fuji-hero.png" alt="Mount Fuji reflected in Lake Kawaguchiko with cherry blossoms">
+  <div class="hero-overlay">
+    <h1>Tokyo & Beyond</h1>
+    <div class="subtitle">A road trip through mountains, onsen & cherry blossoms</div>
+    <div class="dates">April 18 – 24, 2026</div>
+  </div>
+</div>
+
+<!-- ROUTE MAP -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">The Plan</div>
+    <h2>Seven days. Three destinations.<br>One unforgettable drive.</h2>
+    <p class="lead">
+      Start in the electric energy of Shibuya. Drive through Japan's wine country to a ryokan
+      where every room faces Mount Fuji. Navigate 48 hairpin turns up a mountain.
+      Float through ancient shrines. Ride home on a luxury train with a cocktail in hand.
+    </p>
+    <p class="lead">
+      Late April means Tokyo's cherry blossoms are done — but at higher elevations,
+      they're at peak bloom. We're chasing the blossoms to where they're actually happening:
+      Lake Kawaguchiko and the mountain roads of Nikko.
+    </p>
+
+    <!-- Route Map -->
+    <div class="img-card" style="margin-top: 40px;">
+      <div id="route-map" style="height: 420px; border-radius: 12px 12px 0 0;"></div>
+      <div class="caption">Our route: Shibuya → Kawaguchiko → Nikko → Spacia X back to Tokyo</div>
+    </div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var map = L.map('route-map', { scrollWheelZoom: false }).setView([35.85, 139.2], 8);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        maxZoom: 19
+      }).addTo(map);
+
+      // Stops
+      var stops = [
+        { lat: 35.6595, lon: 139.7005, label: '🏨 Shibuya', desc: 'Apr 18–20 & 23', color: '#c0392b' },
+        { lat: 35.6579, lon: 139.7326, label: '🎨 teamLab', desc: 'Apr 19', color: '#9b59b6' },
+        { lat: 35.5128, lon: 138.7693, label: '♨️ Kozantei Ubuya', desc: 'Apr 21 — ryokan', color: '#e67e22' },
+        { lat: 35.3984, lon: 138.7291, label: '⛩️ Chureito Pagoda', desc: 'Apr 22 — THE Fuji shot', color: '#e74c3c' },
+        { lat: 36.7351, lon: 139.5986, label: '🏯 Nikko', desc: 'Apr 22–23', color: '#2ecc71' },
+        { lat: 36.7573, lon: 139.4966, label: '🗻 Irohazaka', desc: '48 hairpin turns', color: '#3498db' },
+        { lat: 36.7348, lon: 139.5978, label: '🚂 Spacia X', desc: 'Nikko → Asakusa', color: '#1abc9c' }
+      ];
+
+      stops.forEach(function(s) {
+        var icon = L.divIcon({
+          html: '<div style="background:' + s.color + ';width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>',
+          className: '', iconSize: [20, 20], iconAnchor: [10, 10]
+        });
+        L.marker([s.lat, s.lon], { icon: icon })
+          .bindPopup('<strong>' + s.label + '</strong><br><span style="font-size:12px;color:#666">' + s.desc + '</span>')
+          .addTo(map);
+      });
+
+      // Route line: Shibuya → Kawaguchiko → Nikko
+      var route = [
+        [35.6595, 139.7005],  // Shibuya
+        [35.62, 139.45],      // heading west
+        [35.55, 139.05],      // approaching mountains
+        [35.5128, 138.7693],  // Kawaguchiko
+        [35.3984, 138.7291],  // Chureito
+        [35.5128, 138.7693],  // back to Kawaguchiko
+        [35.75, 139.15],      // heading northeast
+        [36.1, 139.45],       // through plains
+        [36.4, 139.55],       // approaching Nikko
+        [36.7351, 139.5986]   // Nikko
+      ];
+      L.polyline(route, { color: '#c0392b', weight: 3, opacity: 0.7, dashArray: '8 6' }).addTo(map);
+
+      // Train line: Nikko → Asakusa
+      var trainRoute = [
+        [36.7351, 139.5986],  // Nikko
+        [36.4, 139.7],
+        [36.0, 139.75],
+        [35.71, 139.80]       // Asakusa
+      ];
+      L.polyline(trainRoute, { color: '#1abc9c', weight: 3, opacity: 0.7, dashArray: '4 8' }).addTo(map);
+
+      // Legend
+      var legend = L.control({ position: 'bottomright' });
+      legend.onAdd = function() {
+        var div = L.DomUtil.create('div');
+        div.style.cssText = 'background:white;padding:10px 14px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.15);font:12px/1.6 Inter,-apple-system,sans-serif';
+        div.innerHTML = '<span style="color:#c0392b">- - -</span> Drive &nbsp; <span style="color:#1abc9c">· · ·</span> Spacia X';
+        return div;
+      };
+      legend.addTo(map);
+    });
+    </script>
+  </div>
+</div>
+
+<!-- ITINERARY -->
+<div class="section" style="background: #f3f1ec;">
+  <div class="container">
+    <div class="section-label">Day by Day</div>
+    <h2>The Itinerary</h2>
+
+    <div class="day-grid">
+      <div class="day-marker">
+        <div class="day-num">18</div>
+        <div class="day-dow">Friday</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="day-content">
+        <div class="day-title">Arrival</div>
+        <p>ZIPAIR ZG24 lands at Narita at 8 PM. Narita Express to Shibuya (90 min). Check into the hotel, walk the neon streets, grab late-night ramen at the hotel or wander to a nearby shop. Jet lag is real — don't fight it, lean in.</p>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="day-marker">
+        <div class="day-num">19</div>
+        <div class="day-dow">Saturday</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="day-content">
+        <div class="day-title">Shibuya & teamLab Borderless</div>
+        <p>Morning walk through Meiji Shrine — a forest in the middle of the city, peaceful before the crowds. Stroll Harajuku and Omotesando for coffee and people-watching.</p>
+        <p>Afternoon: <strong>teamLab Borderless</strong> at Azabudai Hills. An immersive digital art museum where rooms of light, water, and flowers flow around you. Plan 2–3 hours. Evening: dinner in Shibuya.</p>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="day-marker">
+        <div class="day-num">20</div>
+        <div class="day-dow">Sunday</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="day-content">
+        <div class="day-title">Tsukiji, Temples & Omakase</div>
+        <p>Morning at Tsukiji Outer Market — tamagoyaki, fresh uni, tuna skewers from the stalls. Then to Asakusa for Senso-ji, Tokyo's oldest temple, with its enormous red lantern and Nakamise shopping street.</p>
+        <p>Evening: <strong>omakase sushi</strong>. Sushi Hajime in Shibuya does a 10-piece weekend lunch for ¥12,550 (~$85) — seasonal nigiri from a hagama rice pot. Or Sushi Yuu for a special 18-course dinner (~$150).</p>
+      </div>
+    </div>
+
+    <!-- KAWAGUCHIKO -->
+    <div class="img-card">
+      <img src="fuji-hero.png" alt="Lake Kawaguchiko and Mt. Fuji">
+      <div class="caption">Lake Kawaguchiko — where the cherry blossoms are still in bloom when Tokyo's have fallen</div>
+    </div>
+
+    <div class="day-grid">
+      <div class="day-marker">
+        <div class="day-num">21</div>
+        <div class="day-dow">Monday</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="day-content">
+        <div class="day-title">🚗 Tokyo → Kawaguchiko</div>
+        <p>Pick up a rental car and drive west on the Chuo Expressway. The landscape transforms from city to mountains in under an hour.</p>
+        <p><strong>Detour: Ide Sake Brewery.</strong> Right in Kawaguchiko — a token-operated tasting machine with 12 different sake. Get 5 tokens per flight, taste your way through, and bring bottles home. The staff speaks English and walks you through everything.</p>
+        <p>Arrive at <strong>Kozantei Ubuya</strong> — a ryokan where every single room faces Mount Fuji across the lake. Private onsen on the balcony. Full kaiseki dinner included. Wake up to Fuji turning pink at sunrise.</p>
+
+        <div class="highlight-box">
+          <span class="emoji">🌸</span>
+          <strong>Cherry blossom timing:</strong> Kawaguchiko sits at 800m elevation, so blossoms arrive ~1 week later than Tokyo. Late April is perfect — you'll be here during peak or late bloom. The famous cherry blossom festival typically runs through mid-late April.
+        </div>
+
+        <div class="highlight-box">
+          <span class="emoji">🍶</span>
+          <strong>Sake note:</strong> Ide Sake Brewery is right in Kawaguchiko. Token-operated tasting of 12 sake — 5 tokens per flight. Great English-speaking staff. You'll walk out with bottles.
+        </div>
+      </div>
+    </div>
+
+    <div class="img-duo">
+      <img src="ryokan-onsen.png" alt="Private onsen at a Japanese ryokan">
+      <img src="nikko-shrine.png" alt="Toshogu Shrine, Nikko">
+    </div>
+
+    <div class="day-grid">
+      <div class="day-marker">
+        <div class="day-num">22</div>
+        <div class="day-dow">Tuesday</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="day-content">
+        <div class="day-title">🚗 Kawaguchiko → Nikko</div>
+        <p><strong>Sunrise at the lake.</strong> On a still morning, Fuji reflects perfectly in the water. Then drive to <strong>Arakurayama Sengen Park</strong> — 398 steps up to the Chureito Pagoda. This is THE iconic shot: red pagoda + cherry blossoms + Mount Fuji.</p>
+        <p>Then drive northeast to Nikko (~3 hours via expressway). Check in, explore the town, and soak in an onsen after the drive.</p>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <img src="irohazaka.png" alt="Irohazaka winding mountain road">
+      <div class="caption">Irohazaka — 48 hairpin turns through the mountains of Nikko. Up and down are separate one-way roads.</div>
+    </div>
+
+    <div class="day-grid">
+      <div class="day-marker">
+        <div class="day-num">23</div>
+        <div class="day-dow">Wednesday</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="day-content">
+        <div class="day-title">🚗 Nikko → 🚂 Spacia X → Tokyo</div>
+        <p>Morning: drive the <strong>Irohazaka</strong> — 48 hairpin turns climbing into the highlands. Stop at Akechidaira lookout for views over the valley. The road is famously split: 20 turns going up, 28 coming down, all one-way. No oncoming traffic on the turns.</p>
+        <p>At the top: <strong>Lake Chuzenji</strong> and <strong>Kegon Falls</strong> — a 97-meter waterfall plunging into a gorge. Then back down to visit <strong>Toshogu Shrine</strong> — the most ornately carved shrine in Japan. UNESCO World Heritage. 500+ carvings including the famous three wise monkeys.</p>
+        <p>Return the rental car. Then board the <strong>Spacia X</strong> — Tobu Railway's luxury limited express — back to Asakusa. Book the Cockpit Lounge: panoramic front windows, craft beer, and the countryside rolling past. The perfect ending to the road trip.</p>
+
+        <div class="highlight-box">
+          <span class="emoji">💎</span>
+          <strong>Upgrade option: Saphir Odoriko</strong> — JR East's most luxurious train. Private compartments with sofas and a closing door, panoramic ceiling glass, lounge car with Izu seafood. If you want one truly special train ride, this is it. Swap one Tokyo day for a round-trip to Izu: Tokyo Station → Ito (~90 min), explore the coast, return in the afternoon. Private compartment for 2: ~$160. Or Premium Green (1×1 seats, sky views): ~$58/person. Book on Klook up to 90 days ahead.
+        </div>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <img src="spacia-x.png" alt="Spacia X luxury train">
+      <div class="caption">Spacia X Cockpit Lounge — panoramic views, craft beer, and a smooth 2-hour ride back to Tokyo</div>
+    </div>
+
+    <div class="day-grid">
+      <div class="day-marker">
+        <div class="day-num">24</div>
+        <div class="day-dow">Thursday</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="day-content">
+        <div class="day-title">Last Morning & Home</div>
+        <p>Sleep in. Wander Shibuya for last-minute shopping — Tokyu Hands, Don Quijote, or the depachika (basement food hall) for omiyage gifts. Maybe a final bowl of ramen.</p>
+        <p>Narita Express to the airport. ZIPAIR ZG25 departs NRT 9:30 PM, arrives SFO 2:45 PM same day.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Eat</div>
+    <h2>Where to Eat</h2>
+    <p class="lead">A short list of the best bites, from Michelin-level omakase to the konbini at 2 AM.</p>
+
+    <div class="img-card">
+      <img src="sushi-omakase.png" alt="Omakase sushi counter">
+      <div class="caption">Chef's counter omakase — the quintessential Tokyo food experience</div>
+    </div>
+
+    <div class="food-card">
+      <h4>🥇 Sushi Hajime</h4>
+      <div class="meta">Shibuya · Omakase · ¥12,550 lunch / ¥25,000+ dinner</div>
+      <p>10 seasonal nigiri from a hagama rice pot. Chef Hiroshi Takahoshi's weekend lunch is the sweet spot. Book on Tabelog or Tablecheck.</p>
+    </div>
+
+    <div class="food-card">
+      <h4>🥈 Sushi Yuu</h4>
+      <div class="meta">Minato City · Omakase · ~$150/person</div>
+      <p>18-course omakase with big portions. Chef Daisuke is entertaining. "Go hungry" — multiple Redditors' top rec. sushiyuu.com</p>
+    </div>
+
+    <div class="food-card">
+      <h4>🍜 Fuunji</h4>
+      <div class="meta">Shinjuku · Tsukemen · ¥1,100</div>
+      <p>Legendary dipping ramen. Rich pork broth, thick noodles. Always a line, but it moves fast. Open late — perfect for jet lag nights.</p>
+    </div>
+
+    <div class="food-card">
+      <h4>🏮 Omoide Yokocho</h4>
+      <div class="meta">Shinjuku · Izakaya alley</div>
+      <p>"Memory Lane" — tiny counter-seat yakitori joints, charcoal smoke, cold beer. Go at dusk for the atmosphere. Old Tokyo at its best.</p>
+    </div>
+
+    <div class="food-card">
+      <h4>🍣 Kamakura Shirasu-don</h4>
+      <div class="meta">Kamakura area · Seasonal</div>
+      <p>Raw whitebait on rice — only available in spring. April is peak season. Café Yoridokoro by the Enoden tracks is the spot.</p>
+    </div>
+
+    <h3>🍶 Sake</h3>
+    <div class="food-card">
+      <h4>Kubota Sake Bar</h4>
+      <div class="meta">Shibuya PARCO B1 · Walking distance from hotel</div>
+      <p>AI-powered blind tasting: try 10 different sake, the system matches your palate. ¥2,750 (~$18). Also has all-you-can-drink courses and sake cocktails. English menu.</p>
+    </div>
+    <div class="food-card">
+      <h4>Junmaishu Yata</h4>
+      <div class="meta">Shibuya · Standing bar</div>
+      <p>Elegant junmai-only standing bar. Friendly staff suggests brands and temperatures. All-you-can-drink ¥2,000/hour (~$13). Also in Shinjuku and Shimbashi.</p>
+    </div>
+    <div class="food-card">
+      <h4>Ide Sake Brewery</h4>
+      <div class="meta">Kawaguchiko · On your driving route</div>
+      <p>Token-operated tasting machine — 12 sake, 5 tokens per flight. English-speaking staff walks you through it. Bring bottles home.</p>
+    </div>
+    <div class="food-card">
+      <h4>Hasegawa Saketen</h4>
+      <div class="meta">Tokyo Station B1 (GranSta)</div>
+      <p>Standing bar inside the station. 40+ sake, doburoku (cloudy unfiltered) brewed on premises. English-speaking concierge. Perfect pre-Shinkansen stop.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LOGISTICS -->
+<div class="section" style="background: #f3f1ec;">
+  <div class="container">
+    <div class="section-label">Logistics</div>
+    <h2>Before We Go</h2>
+
+    <ul class="checklist">
+      <li><span class="check-icon">🛫</span><div><strong>Flights booked:</strong> ZIPAIR ZG24 SFO→NRT Apr 17 (dep 4:45 PM, arr Apr 18 8 PM) · ZG25 NRT→SFO Apr 24 (dep 9:30 PM, arr 2:45 PM). Flex Biz.</div></li>
+      <li><span class="check-icon">🏨</span><div><strong>Hotel:</strong> Dormy Inn Premium Shibuya-Jingumae (nights of Apr 18, 19, 20, 23). Onsen, free late-night ramen, 5 min to Shibuya Station.</div></li>
+      <li><span class="check-icon">♨️</span><div><strong>Ryokan:</strong> Kozantei Ubuya, Kawaguchiko (night of Apr 21). Private onsen, Fuji view, kaiseki dinner. ~¥80,000–120,000 for two.</div></li>
+      <li><span class="check-icon">🚗</span><div><strong>Rental car:</strong> Pick up in Kawaguchiko Apr 21, return Nikko Apr 23 (3 days). Toyota Rent-a-Car or Times. ~$120 + tolls + gas.</div></li>
+      <li><span class="check-icon">📋</span><div><strong>International Driving Permit:</strong> AAA, $20 each, walk-in. Bring license + 2 passport photos. AAA takes photos on site too. <strong>Wed Apr 16.</strong></div></li>
+      <li><span class="check-icon">🎨</span><div><strong>teamLab Borderless:</strong> Book on Klook (~$30/person). Apr 19, 1–2 PM slot. teamlab.art or klook.com</div></li>
+      <li><span class="check-icon">🚂</span><div><strong>Spacia X:</strong> Book Cockpit Lounge on Tobu Railway site. Apr 23, Nikko→Asakusa. These sell out — book ASAP.</div></li>
+      <li><span class="check-icon">📱</span><div><strong>eSIM:</strong> Ubigi or Airalo (~$5–10 for 7 days). Activate before landing.</div></li>
+      <li><span class="check-icon">💴</span><div><strong>Cash:</strong> Get ¥20,000–30,000 from a 7-Eleven ATM on arrival. Many small shops are still cash-only.</div></li>
+      <li><span class="check-icon">🐕</span><div><strong>Pet care:</strong> Joe has Penny covered ✅</div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="sig">🌸 See you in Tokyo 🌸</div>
+  <p>Andreas & Alice · April 2026</p>
+  <p style="margin-top: 12px; font-size: 0.8rem; opacity: 0.5;">Made with love by Penny 🐾</p>
+</div>
+
+</body>
+</html>
